@@ -24,7 +24,20 @@ spec:
         io.kompose.service: app
     spec:
       containers:
-        - image: nextcloud:20.0-apache
+        - env:
+            - name: NEXTCLOUD_ADMIN_PASSWORD
+              value: admin
+            - name: NEXTCLOUD_ADMIN_USER
+              value: admin
+            - name: POSTGRES_DB
+              value: nextcloud_user
+            - name: POSTGRES_HOST
+              value: db
+            - name: POSTGRES_PASSWORD
+              value: nextcloud_pass
+            - name: POSTGRES_USER
+              value: nextcloud_user
+          image: nextcloud:20.0-apache
           name: app
           ports:
             - containerPort: 80

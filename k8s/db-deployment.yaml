@@ -1,6 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.22.0 (955b78124)
+  creationTimestamp: null
   labels:
     io.kompose.service: db
   name: db
@@ -9,10 +13,13 @@ spec:
   selector:
     matchLabels:
       io.kompose.service: db
-  strategy:
-    type: Recreate
+  strategy: {}
   template:
     metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.22.0 (955b78124)
+      creationTimestamp: null
       labels:
         io.kompose.service: db
     spec:
@@ -26,4 +33,6 @@ spec:
           name: db
           ports:
             - containerPort: 5432
+          resources: {}
       restartPolicy: Always
+status: {}
