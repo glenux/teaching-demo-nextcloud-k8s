@@ -40,5 +40,12 @@ spec:
           ports:
             - containerPort: 5432
           resources: {}
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: db-data
       restartPolicy: Always
+      volumes:
+        - name: db-data
+          persistentVolumeClaim:
+            claimName: db-data
 status: {}
