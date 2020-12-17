@@ -55,5 +55,12 @@ spec:
           ports:
             - containerPort: 80
           resources: {}
+          volumeMounts:
+            - mountPath: /var/www/html
+              name: app-data
       restartPolicy: Always
+      volumes:
+        - name: app-data
+          persistentVolumeClaim:
+            claimName: app-data
 status: {}
