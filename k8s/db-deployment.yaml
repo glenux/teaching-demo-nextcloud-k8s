@@ -26,9 +26,15 @@ spec:
       containers:
         - env:
             - name: POSTGRES_PASSWORD
-              value: nextcloud_pass
+              valueFrom: 
+                secretKeyRef:
+                  name: db-secret
+                  key: POSTGRES_PASSWORD
             - name: POSTGRES_USER
-              value: nextcloud_user
+              valueFrom: 
+                secretKeyRef:
+                  name: db-secret
+                  key: POSTGRES_USER
           image: postgres:12.5
           name: db
           ports:
